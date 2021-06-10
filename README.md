@@ -1,1 +1,1 @@
-blockchain Study
+blockchain study
