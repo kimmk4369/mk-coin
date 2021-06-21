@@ -1,17 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-type person struct {
-	name string
-	age  int
-}
-
-func (p person) sayHello() {
-	fmt.Printf("Hello!!! My name is %s and I'm %d", p.name, p.age)
-}
+	"github.com/kimmk4369/mk-coin/blockchain"
+)
 
 func main() {
-	mk := person{name: "mk", age: 33}
-	mk.sayHello()
+	chain := blockchain.GetBlockchain()
+	chain.AddBlock("Second Block")
+	chain.AddBlock("Third Block")
+	chain.AddBlock("Fourth Block")
+
+	for _, block := range chain.AllBlocks() {
+		fmt.Printf("Data: %s\n", block.Data)
+		fmt.Printf("Hash: %s\n", block.Hash)
+		fmt.Printf("Prev Hash: %s\n", block.PrevHash)
+	}
 }
