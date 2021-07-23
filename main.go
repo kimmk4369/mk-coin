@@ -1,9 +1,7 @@
 package main
 
-import (
-	"github.com/kimmk4369/mk-coin/rest"
-)
+import "github.com/kimmk4369/mk-coin/cli"
 
 func main() {
-	rest.Start(4000)
+	cli.Start()
 }
