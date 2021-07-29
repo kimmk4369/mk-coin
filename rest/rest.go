@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/kimmk4369/mk-coin/blockchain"
+	"github.com/kimmk4369/mk-coin/utils"
 )
 
 var port string
@@ -64,15 +65,13 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 func blocks(rw http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		return
-		//json.NewEncoder(rw).Encode(blockchain.GetBlockchain().AllBlocks())
+		json.NewEncoder(rw).Encode(blockchain.Blockchain().Blocks())
 	case "POST":
 		// {"data":"block data"}
-		return
-		// var addBlockBody addBlockBody
-		// utils.HandleErr(json.NewDecoder(r.Body).Decode(&addBlockBody))
-		// blockchain.GetBlockchain().AddBlock(addBlockBody.Message)
-		// rw.WriteHeader(http.StatusCreated)
+		var addBlockBody addBlockBody
+		utils.HandleErr(json.NewDecoder(r.Body).Decode(&addBlockBody))
+		blockchain.Blockchain().AddBlock(addBlockBody.Message)
+		rw.WriteHeader(http.StatusCreated)
 	}
 }
 

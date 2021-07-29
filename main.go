@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/kimmk4369/mk-coin/blockchain"
 	"github.com/kimmk4369/mk-coin/cli"
+	"github.com/kimmk4369/mk-coin/db"
 )
 
 func main() {
-	blockchain.Blockchain()
+	defer db.Close()
+
 	cli.Start()
 }
